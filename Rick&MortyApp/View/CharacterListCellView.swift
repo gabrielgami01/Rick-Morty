@@ -71,7 +71,7 @@ final class CharacterListCellView: UITableViewCell {
         if let imageUrl = character.image {
             Task {
                 do {
-                    let image = try await APIClient.shared.fetchCharacterImage(url: imageUrl.appendingPathComponent("image"))
+                    let image = try await APIClient.shared.fetchCharacterImage(url: imageUrl)
                     await MainActor.run {
                         self.characterIV.image = image
                     }
