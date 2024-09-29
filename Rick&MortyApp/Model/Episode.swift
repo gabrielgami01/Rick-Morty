@@ -9,14 +9,12 @@ struct EpisodeDTO: Codable {
     let name: String
     let airDate: String
     let episode: String
-    let characters: [String]
     
     enum CodingKeys: String, CodingKey {
         case id
         case name
         case airDate = "air_date"
         case episode
-        case characters
     }
     
     private func getSeasonNumber() -> Int? {
@@ -27,11 +25,20 @@ struct EpisodeDTO: Codable {
         return nil
     }
     
+    private func getEpisodeNumber() -> Int? {
+        let components = episode.split(separator: "E")
+        if let episodeString = components.last {
+            return Int(episodeString)
+        }
+        return nil
+    }
+    
     var toEpisode: Episode {
         Episode(id: id,
                 name: name,
-                aireDate: airDate,
-                season: getSeasonNumber() ?? 0
+                airDate: airDate,
+                season: getSeasonNumber() ?? 0,
+                episode: getEpisodeNumber() ?? 0
         )
     }
 }
@@ -39,6 +46,7 @@ struct EpisodeDTO: Codable {
 struct Episode {
     let id: Int
     let name: String
-    let aireDate: String
+    let airDate: String
     let season: Int
+    let episode: Int
 }
