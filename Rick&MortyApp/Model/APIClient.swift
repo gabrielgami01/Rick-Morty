@@ -61,4 +61,23 @@ struct APIClient {
             throw NetworkError.status(response.statusCode)
         }
     }
+    
+    func fetchEpisodes(page: Int = 1) async throws -> [Episode]  {
+        let url = URL(string: "https://rickandmortyapi.com/api/episode/?page=\(page)")!
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        guard let response = response as? HTTPURLResponse else {
+            throw NetworkError.nonHTTP
+        }
+        
+        if response.statusCode == 200 {
+            do {
+                return try JSONDecoder().decode(EpisodeListDTO.self, from: data).results.map(\.toEpisode)
+            } catch {
+                throw NetworkError.json(error)
+            }
+        } else {
+            throw NetworkError.status(response.statusCode)
+        }
+    }
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-final class CharacterTableViewController: UITableViewController {
+final class CharactersTableViewController: UITableViewController {
     var characters: [Character] = []
     var page = 1
     
@@ -12,9 +12,9 @@ final class CharacterTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(CharacterListCellView.self, forCellReuseIdentifier: CharacterListCellView.identifier)
+        tableView.register(CharacterTableViewCell.self, forCellReuseIdentifier: CharacterTableViewCell.identifier)
         
-        navigationItem.title = "Rick & Morty"
+        navigationItem.title = "Characters"
         
         configureSearchController()
 
@@ -61,7 +61,7 @@ final class CharacterTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterListCellView.identifier, for: indexPath) as? CharacterListCellView else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterTableViewCell.identifier, for: indexPath) as? CharacterTableViewCell else {
             return UITableViewCell()
         }
         let character = characters[indexPath.row]
@@ -91,7 +91,7 @@ final class CharacterTableViewController: UITableViewController {
     }
 }
 
-extension CharacterTableViewController: UISearchBarDelegate {
+extension CharactersTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             characters.removeAll()

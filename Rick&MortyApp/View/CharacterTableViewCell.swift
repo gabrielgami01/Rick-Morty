@@ -1,7 +1,7 @@
 import UIKit
 
-final class CharacterListCellView: UITableViewCell {
-    static let identifier = "CharacterListCellView"
+final class CharacterTableViewCell: UITableViewCell {
+    static let identifier = "CharacterTableViewCell"
     
     let characterIV: UIImageView = {
         let imageView = UIImageView()

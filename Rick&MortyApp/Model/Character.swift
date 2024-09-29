@@ -5,6 +5,7 @@ struct CharacterListDTO: Codable {
 }
 
 struct CharacterDTO: Codable {
+    let id: Int
     let name: String
     let status: String
     let species: String
@@ -15,6 +16,7 @@ struct CharacterDTO: Codable {
     
     var toCharacter: Character {
         Character(
+            id: id,
             name: name,
             status: status,
             species: species,
@@ -37,7 +39,7 @@ struct LocationDTO: Codable {
 }
 
 struct Character: Codable {
-    var id = UUID()
+    let id: Int
     let name: String
     let status: String
     let species: String
