@@ -5,3 +5,7 @@ Una aplicación que lista los personajes y episodios de la serie *Rick and Morty
 - **Lenguaje:** Swift
 - **Frameworks:** UIKit
 - **Patrones de Diseño:** MVC, Coordinator
+
+## ✨ Funcionalidades
+- Visualización de todos los episodios de *Rick & Morty* organizados por temporadas.
+- VIsualización de todos los personajes de *Rick & Morty* junto con una vista detalle.
